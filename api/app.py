@@ -14,3 +14,13 @@ def submit():
     output_age = int(input_age) + 25
     return render_template("hello.html", name=input_name,
                            age=input_age, another_age=output_age)
+
+def process_query(query):
+    if (query == "dinosaurs"):
+        return "Dinosaurs ruled the Earth 200 million years ago"
+    
+    if (query == "asteroids"):
+        return "Unknown"
+
+@app.route("/test", methods=["GET"])
+
