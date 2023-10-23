@@ -12,4 +12,5 @@ def submit():
     input_name = request.form.get("name")
     input_age = request.form.get("age")
     output_age = int(input_age) + 25
-    return render_template("hello.html", name=input_name, age=input_age, another_age=output_age)
+    return render_template("hello.html", name=input_name, 
+                            age=input_age, another_age=output_age)
