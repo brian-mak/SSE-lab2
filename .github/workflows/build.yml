@@ -35,7 +35,7 @@ jobs:
         python-version: 3.9
 
     - name: Install Packages
-      run: pip install pytest Flask render_template request
+      run: pip install pytest flask
 
     - name: Run Unit Test
       run: pytest api/*.py
