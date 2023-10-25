@@ -14,7 +14,8 @@ def submit():
     input_studentid = request.form.get("studentid")
     output_age = int(input_age) + 25
     return render_template("hello.html", name=input_name,
-                           age=input_age, another_age=output_age, student_id=input_studentid)
+                           age=input_age, another_age=output_age, 
+                           student_id=input_studentid)
 
 
 def process_query(query):
