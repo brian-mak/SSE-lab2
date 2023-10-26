@@ -1,21 +1,6 @@
- <html>
-   <head>
-     <script>
-       function updateCountdown() {
-            const now = new Date();
-            const next_new_year = new Date(now.getFullYear() + 1, 0, 1, 0, 0, 0, 0);
-            const timeRemaining = nextNewYear - now;
-            const day = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-            const hr = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const min = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-            const sec = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-            const countdownElement = document.getElementById("countdown");
-            countdownElement.innerHTML = `Countdown to New Year: ${day}d ${hr}h ${min}m ${sec}s`;
-        }
-        setInterval(updateCountdown, 1000);
-        updateCountdown()
-     </script>
- </head>
+<html>
+  <head>
+  </head>
  <body>
    <h1 style="color:#fc0fc0;">Hello World<h1>
     <img src="static/meme.jpeg" alt="meme">
