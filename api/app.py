@@ -38,7 +38,7 @@ def process_query(query):
         number_2_end = query.index("?")
         number_2 = int(query[number_2_start:number_2_end])
 
-        return (number_1 + number_2)
+        return str(number_1 + number_2)
 
     if ("Which of the following numbers is the largest:") in query:
         return find_largest_number(query)
