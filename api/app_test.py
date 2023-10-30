@@ -11,5 +11,5 @@ def test_does_not_know_about_asteroids():
 
 
 def test_does_not_return_name():
-    assert process_query("name") == "Whatever"
+    assert process_query("your name") == "Whatever"
     
