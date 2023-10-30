@@ -40,12 +40,9 @@ def process_query(query):
 
     if ("Which of the following numbers is both a square and a cube") in query:
         return find_square_and_cube_numbers(query)
-<<<<<<< HEAD
-=======
-    
+
     if ("Which of the following numbers are primes: ") in query:
         return find_prime(query)
->>>>>>> 062fbe2 (add prime)
 
 
 def is_square_and_cube(number):
@@ -60,6 +57,7 @@ def find_square_and_cube_numbers(query):
         return []  # No numbers found in the query
     square_and_cube_numbers = [num for num in numbers if is_square_and_cube(num)]
     return str(square_and_cube_numbers)
+
 
 def plus_two_numbers(query):
     number_1_start = query.index("is ") + len("is ")
