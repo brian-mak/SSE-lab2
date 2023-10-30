@@ -25,7 +25,7 @@ def process_query(query):
     if ("asteroids" in query):
         return "Unknown"
 
-    if ("your name" in query):
+    if ("What is your name?" in query):
         return "Whatever"
 
 
