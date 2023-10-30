@@ -39,7 +39,6 @@ def process_query(query):
         return str(multiply_two_numbers(query))
 
 
-
 def plus_two_numbers(query):
     number_1_start = query.index("is ") + len("is ")
     number_1_end = query.index("plus")
