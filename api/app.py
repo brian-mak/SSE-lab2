@@ -38,6 +38,22 @@ def process_query(query):
     if ("What is " in query and "multiplied by " in query):
         return str(multiply_two_numbers(query))
 
+    if ("Which of the following numbers is both a square and a cube") in query:
+        return find_square_and_cube_numbers(query))
+
+
+def is_square_and_cube(number):
+    root = int(number ** (1/6))  # Take the 6th root to check for square and cube
+    return (root ** 2) ** 3 == number  # Check if the number is both a square and a cube
+
+
+def find_square_and_cube_numbers(query):
+    # Use regular expression to extract numbers from the query
+    numbers = [int(match) for match in re.findall(r'\d+', query)]
+    if not numbers:
+        return []  # No numbers found in the query
+    square_and_cube_numbers = [num for num in numbers if is_square_and_cube(num)]
+    return str(square_and_cube_numbers)
 
 
 def plus_two_numbers(query):
