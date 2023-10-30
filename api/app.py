@@ -40,6 +40,12 @@ def process_query(query):
 
     if ("Which of the following numbers is both a square and a cube") in query:
         return find_square_and_cube_numbers(query)
+<<<<<<< HEAD
+=======
+    
+    if ("Which of the following numbers are primes: ") in query:
+        return find_prime(query)
+>>>>>>> 062fbe2 (add prime)
 
 
 def is_square_and_cube(number):
@@ -86,6 +92,30 @@ def find_largest_number(query):
     # Find the largest number using the max() function
     largest_number = max(numbers)
     return str(largest_number)
+
+
+def find_prime(query):
+    # Use regular expression to extract numbers from the query
+    numbers = [int(match) for match in re.findall(r'\d+', query)]
+    if not numbers:
+        return []  # No numbers found in the query
+    prime = [num for num in numbers if is_prime(num)]
+    return str(prime[0])
+
+
+def is_prime(num):
+    if num == 1:
+        return False
+    elif num > 1:
+        # check for factors
+        for i in range(2, num):
+            if (num % i) == 0:
+                # if factor is found, set flag to True
+                return False
+                # break out of loop
+                break
+
+        return True
 
 
 @app.route("/query", methods=["GET"])
