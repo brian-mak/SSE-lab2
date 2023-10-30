@@ -34,8 +34,8 @@ def process_query(query):
         number_1 = int(query[number_1_start:number_1_end])
 
         number_2_start = query.index("plus ") + len("plus ")
-        number_2_end = query.index("?") - 1 
-        number_2 = int(query[number_1_start:number_1_end])
+        number_2_end = query.index("?") - 1
+        number_2 = int(query[number_2_start:number_2_end])
 
         return (number_1 + number_2)
 
