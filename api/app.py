@@ -50,7 +50,7 @@ def find_largest_number(query):
         return None  # No numbers found in the query
     # Find the largest number using the max() function
     largest_number = max(numbers)
-    return largest_number
+    return str(largest_number)
 
 
 @app.route("/query", methods=["GET"])
