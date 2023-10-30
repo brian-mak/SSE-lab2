@@ -19,11 +19,14 @@ def submit():
 
 
 def process_query(query):
-    if (query == "dinosaurs"):
+    if ("dinosaurs" in query):
         return "Dinosaurs ruled the Earth 200 million years ago"
 
-    if (query == "asteroids"):
+    if ("asteroids" in query):
         return "Unknown"
+
+    if ("name" in query):
+        return "Whatever"
 
 
 @app.route("/query", methods=["GET"])
