@@ -59,7 +59,8 @@ def find_square_and_cube_numbers(query):
         return []  # No numbers found in the query
     square_and_cube_numbers = [num for num in numbers if
                                is_square_and_cube(num)]
-    return str(square_and_cube_numbers)
+    result = ",".join(map(str, square_and_cube_numbers))
+    return result
 
 
 def plus_two_numbers(query):
