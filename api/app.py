@@ -55,7 +55,6 @@ def find_square_and_cube_numbers(query):
     square_and_cube_numbers = [num for num in numbers if is_square_and_cube(num)]
     return str(square_and_cube_numbers)
 
-
 def plus_two_numbers(query):
     number_1_start = query.index("is ") + len("is ")
     number_1_end = query.index("plus")

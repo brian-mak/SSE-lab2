@@ -25,4 +25,3 @@ def test_which_is_greatest():
 
 def test_multiply():
     assert process_query("What is 44 multiplied by 48?") == "2112"
-
