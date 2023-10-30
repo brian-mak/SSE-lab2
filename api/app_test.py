@@ -22,12 +22,12 @@ def test_which_is_greatest():
     assert process_query("Which of the following numbers is the largest: " +
                          "92, 71, 75?") == '92'
 
-
+    
 def test_multiply():
     assert process_query("What is 44 multiplied by 48?") == "2112"
 
 
-
 def test_square_cube():
-    assert process_query("Which of the following numbers is both a square and a " +
-                         "cube: 2964, 1797, 125, 729, 2209, 1195, 3701?") == "125, 729"
+    assert process_query("Which of the following numbers is both a square " +
+                         "and a cube: 2964, 1797, 125, 729, 2209, 1195, " +
+                         "3701?") == "125, 729"

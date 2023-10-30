@@ -39,7 +39,7 @@ def process_query(query):
         return str(multiply_two_numbers(query))
 
     if ("Which of the following numbers is both a square and a cube") in query:
-        return find_square_and_cube_numbers(query))
+        return find_square_and_cube_numbers(query)
 
 
 def is_square_and_cube(number):
