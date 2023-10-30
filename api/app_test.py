@@ -30,7 +30,7 @@ def test_multiply():
 def test_square_cube():
     assert process_query("Which of the following numbers is both a square " +
                          "and a cube: 2964, 1797, 125, 729, 2209, 1195, " +
-                         "3701?") == "125, 729"
+                         "3701?") == "729"
 
 
 def test_prime():
