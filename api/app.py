@@ -57,7 +57,7 @@ def find_square_and_cube_numbers(query):
     numbers = [int(match) for match in re.findall(r'\d+', query)]
     if not numbers:
         return []  # No numbers found in the query
-    square_and_cube_numbers = [num for num in numbers if /
+    square_and_cube_numbers = [num for num in numbers if \
                                is_square_and_cube(num)]
     return str(square_and_cube_numbers)
 
