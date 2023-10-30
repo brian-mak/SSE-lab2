@@ -17,9 +17,12 @@ def test_does_not_return_name():
 def test_plus():
     assert process_query("What is 32 plus 71?") == "103"
 
-def test_plus():
-    assert process_query("Which of the following numbers is the largest: " + \
+
+def test_which_is_greatest():
+    assert process_query("Which of the following numbers is the largest: " +
                          "92, 71, 75?") == '92'
+
 
 def test_multiply():
     assert process_query("What is 44 multiplied by 48?") == "2112"
+
