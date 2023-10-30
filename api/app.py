@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+import re
 app = Flask(__name__)
 
 
@@ -38,6 +39,18 @@ def process_query(query):
         number_2 = int(query[number_2_start:number_2_end])
 
         return (number_1 + number_2)
+
+    if ("Which of the following numbers is the largest:") in query:
+        return find_largest_number(query)
+
+
+def find_largest_number(query):
+    numbers = [int(match) for match in re.findall(r'\d+', query)]
+    if not numbers:
+        return None  # No numbers found in the query
+    # Find the largest number using the max() function
+    largest_number = max(numbers)
+    return largest_number
 
 
 @app.route("/query", methods=["GET"])
