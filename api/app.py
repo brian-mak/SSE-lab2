@@ -27,8 +27,19 @@ def git_submit():
                             input_username + "/repos")
     if response.status_code == 200:
         repos = response.json()
-        # data returned is a list of ‘repository’ entities
-        repo_info = [(repo["full_name"], repo["updated_at"]) for repo in repos]
+        repo_info = []
+        for repo in repos:
+            repo_name = repo["full_name"]
+            commit_reponse = requests.get("https://api.github.com/repos/{repo_name}/commits")
+            if commit_response.status_code == 200:
+                commits = commit_repsonse.json()
+                if len(commits) > 0:
+                    latest_commit = commits[0]["commit"]["author"]["date"]
+                else:
+                    latest_commit = "No commits"
+            else:
+                latest_commit = "Error fetching commits"
+        repo_info.append = ((repo_name, repo["updated_at"], latest_commit))
         return render_template("newpage.html", username=input_username,
                                repo_info=repo_info)
     else:

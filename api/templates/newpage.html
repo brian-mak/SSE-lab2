@@ -10,13 +10,15 @@
 	<tr>
 	  <th>Repository Name</th>
 	  <th>Last Updated</th>
+	  <th>Latest Commit</th>
 	</tr>
       </thead>
       <tbody>
-	{% for repo_name, last_update in repo_info %}
+	{% for repo_name, last_update, latest_commit in repo_info %}
 	<tr>
 	  <td>{{ repo_name }}</td>
 	  <td>{{ last_update }}</td>
+	  <td>{{ latest_commit }}</td>
 	</tr>
 	{% endfor %}
       </tbody>
