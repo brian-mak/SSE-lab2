@@ -28,9 +28,8 @@ def git_submit():
     if response.status_code == 200:
         repos = response.json()
         # data returned is a list of ‘repository’ entities
-        for repo in repos:
-            print(repo["full_name"])
-        return render_template("newpage.html", username=input_username)
+        repo_names = [repo["full_name"] for repo in repos]
+        return render_template("newpage.html", username=input_username, repos=repo_names)
     else:
         return "ERROR"
 
