@@ -1,7 +1,14 @@
 <html>
   <head>
+    <title>Github Repositories</title>
   </head>
   <body>
-    <h1>Hello {{ username }}!<h1>
+    <h1>Hello {{ username }}!</h1>
+    <h1>GitHub Repositories for {{ username }}</h1>
+    <ul>
+      {% for repo in repos %}
+      <li>{{ repo }}</li>
+      {% endfor %}
+    </ul>
   </body>
 </html>
