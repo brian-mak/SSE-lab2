@@ -30,9 +30,10 @@ def git_submit():
         repo_info = []
         for repo in repos:
             repo_name = repo["full_name"]
-            commit_reponse = requests.get("https://api.github.com/repos/{repo_name}/commits")
+            commit_response = requests.get("https://api.github.com/repos/" +
+                                           repo_name + "/commits")
             if commit_response.status_code == 200:
-                commits = commit_repsonse.json()
+                commits = commit_response.json()
                 if len(commits) > 0:
                     latest_commit = commits[0]["commit"]["author"]["date"]
                 else:
