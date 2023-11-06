@@ -6,12 +6,8 @@
     <h1>Hello {{ username }}!</h1>
     <h1>GitHub Repositories for {{ username }}</h1>
     <ul>
-      {% for repo in repos %}
-      <li>{{ repo }}</li>
-        <ul>
-          {% for hash in hashes %}
-          <li>{{ hash }}</li>
-        </ul>
+      {% for repo_name, last_update in repo_info %}
+      <li>{{ repo_name }} (Last Updated: {{ last_update }})</li>
       {% endfor %}
     </ul>
   </body>
