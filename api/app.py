@@ -19,6 +19,12 @@ def submit():
                            student_id=input_studentid)
 
 
+@app.route("/git_submit", methods=["POST"])
+def git_submit():
+    input_username = request.form.get("git_username")
+    return render_template("newpage.html", username=input_username)
+
+
 def process_query(query):
     if ("dinosaurs" in query):
         return "Dinosaurs ruled the Earth 200 million years ago"
