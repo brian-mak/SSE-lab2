@@ -29,8 +29,12 @@ def git_submit():
         repos = response.json()
         # data returned is a list of ‘repository’ entities
         repo_names = [repo["full_name"] for repo in repos]
+        repo_commit_url = [repo["commits_url"] for repo in repos]
+        commit_response = requests.get(repo_commit_url)
+        commits = commit_response.json()
+        commit_hash = [commit["sha"] for commit in commits]
         return render_template("newpage.html", username=input_username,
-                               repos=repo_names)
+                               repos=repo_names, hashes = commit_hash)
     else:
         return "ERROR"
 

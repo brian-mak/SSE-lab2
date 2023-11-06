@@ -8,6 +8,10 @@
     <ul>
       {% for repo in repos %}
       <li>{{ repo }}</li>
+        <ul>
+          {% for hash in hashes %}
+          <li>{{ hash }}</li>
+        </ul>
       {% endfor %}
     </ul>
   </body>
