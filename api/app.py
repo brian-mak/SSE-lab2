@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import re
+import requests
 app = Flask(__name__)
 
 
@@ -22,7 +23,16 @@ def submit():
 @app.route("/git_submit", methods=["POST"])
 def git_submit():
     input_username = request.form.get("git_username")
-    return render_template("newpage.html", username=input_username)
+    response = requests.get(“https://api.github.com/users/{GITHUB_USERNAME}/repos”)
+    if response.status_code == 200:
+        repos = response.json() # data returned is a list of ‘repository’ entities
+        for repo in repos:
+            print(repo[“full_name”])
+        return render_template("newpage.html", username=input_username)
+    else
+        return "ERROR"
+
+
 
 
 def process_query(query):
