@@ -23,6 +23,8 @@ def submit():
 @app.route("/git_submit", methods=["POST"])
 def git_submit():
     input_username = request.form.get("git_username")
+    input_repo_name = request.form.get("repo_name")
+    input_keyword = request.form.get("keyword")
     response = requests.get("https://api.github.com/users/" +
                             input_username + "/repos")
     if response.status_code == 200:
@@ -57,9 +59,27 @@ def git_submit():
             repo_info.append((repo_name, last_updated, total_commits,
                               latest_commit_hash, latest_commit_date,
                               latest_commit_author, latest_commit_msg))
-
+        commit_response_2 = requests.get("https://api.github.com/repos/" +
+                                         input_repo_name + "/commits")
+        if commit_response_2.status_code == 200:
+            commits_of_interest = commit_response_2.json()
+            commits_with_keyword = []
+            for commit in commits_of_interest:
+                commit_hash = commit["sha"]
+                commit_date = commit["commit"]["author"]["date"]
+                commit_author = commit["commit"]["author"]["name"]
+                commit_msg = commit["commit"]["message"]
+                if input_keyword in commit_msg:
+                    commits_with_keyword.append((commit_hash, commit_date,
+                                             commit_author, commit_msg))
+        else:
+            commit_hash = "Error fetching commits"
+            commit_date = "N/A"
+            commit_author = "N/A"
+            commit_msg = "N/A"
         return render_template("newpage.html", username=input_username,
-                               repo_info=repo_info)
+                               repo_info=repo_info,
+                               commits_with_keyword = commits_with_keyword)
     else:
         return "User not exist"
 
