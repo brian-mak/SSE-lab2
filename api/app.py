@@ -30,21 +30,36 @@ def git_submit():
         repo_info = []
         for repo in repos:
             repo_name = repo["full_name"]
+            last_updated = repo["updated_at"]
             commit_response = requests.get("https://api.github.com/repos/" +
                                            repo_name + "/commits")
             if commit_response.status_code == 200:
                 commits = commit_response.json()
                 if len(commits) > 0:
-                    latest_commit = commits[0]["commit"]["author"]["date"]
+                    latest_commit_hash = commits[0]["commit"]["tree"]["sha"]
+                    latest_commit_date = commits[0]["commit"]["author"]["date"]
+                    latest_commit_author = \
+                        commits[0]["commit"]["author"]["name"]
+                    latest_commit_msg = commits[0]["commit"]["message"]
                 else:
-                    latest_commit = "No commits"
+                    latest_commit_hash = "No commits"
+                    latest_commit_date = "N/A"
+                    latest_commit_author = "N/A"
+                    latest_commit_msg = "N/A"
             else:
-                latest_commit = "Error fetching commits"
-        repo_info.append = ((repo_name, repo["updated_at"], latest_commit))
+                latest_commit_hash = "Error fetching commits"
+                latest_commit_date = "N/A"
+                latest_commit_author = "N/A"
+                latest_commit_msg = "N/A"
+
+            repo_info.append((repo_name, last_updated, latest_commit_hash,
+                              latest_commit_date, latest_commit_author,
+                              latest_commit_msg))
+
         return render_template("newpage.html", username=input_username,
                                repo_info=repo_info)
     else:
-        return "ERROR"
+        return "User not exist"
 
 
 def process_query(query):

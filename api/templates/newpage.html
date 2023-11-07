@@ -5,20 +5,26 @@
   <body>
     <h1>Hello {{ username }}!</h1>
     <h1>GitHub Repositories for {{ username }}</h1>
-    <table>
+    <table border="1">
       <thead>
 	<tr>
 	  <th>Repository Name</th>
-	  <th>Last Updated</th>
-	  <th>Latest Commit</th>
+	  <th>Last Updated at</th>
+	  <th>Latest Commit's Hash</th>
+    <th>Latest Commit at</th>
+    <th>Latest Commit by</th>
+    <th>Latest Commit's Message</th>
 	</tr>
       </thead>
       <tbody>
-	{% for repo_name, last_update, latest_commit in repo_info %}
+	{% for repo_name, last_update, latest_commit_hash, latest_commit_date, latest_commit_author, latest_commit_msg in repo_info %}
 	<tr>
 	  <td>{{ repo_name }}</td>
 	  <td>{{ last_update }}</td>
-	  <td>{{ latest_commit }}</td>
+    <td>{{ latest_commit_hash }}</td>
+    <td>{{ latest_commit_date }}</td>
+    <td>{{ latest_commit_author }}</td>
+    <td>{{ latest_commit_msg }}</td>
 	</tr>
 	{% endfor %}
       </tbody>
