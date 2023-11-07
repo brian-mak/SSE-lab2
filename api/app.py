@@ -36,13 +36,15 @@ def git_submit():
             if commit_response.status_code == 200:
                 commits = commit_response.json()
                 if len(commits) > 0:
+                    total_commits = len(commits)
                     latest_commit_hash = commits[0]["commit"]["tree"]["sha"]
                     latest_commit_date = commits[0]["commit"]["author"]["date"]
                     latest_commit_author = \
                         commits[0]["commit"]["author"]["name"]
                     latest_commit_msg = commits[0]["commit"]["message"]
                 else:
-                    latest_commit_hash = "No commits"
+                    total_commits = "No commits"
+                    latest_commit_hash = "N/A"
                     latest_commit_date = "N/A"
                     latest_commit_author = "N/A"
                     latest_commit_msg = "N/A"
@@ -52,9 +54,9 @@ def git_submit():
                 latest_commit_author = "N/A"
                 latest_commit_msg = "N/A"
 
-            repo_info.append((repo_name, last_updated, latest_commit_hash,
-                              latest_commit_date, latest_commit_author,
-                              latest_commit_msg))
+            repo_info.append((repo_name, last_updated, total_commits,
+                              latest_commit_hash, latest_commit_date,
+                              latest_commit_author, latest_commit_msg))
 
         return render_template("newpage.html", username=input_username,
                                repo_info=repo_info)

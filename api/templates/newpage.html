@@ -10,6 +10,7 @@
 	<tr>
 	  <th>Repository Name</th>
 	  <th>Last Updated at</th>
+    <th>No. of Commits</th>
 	  <th>Latest Commit's Hash</th>
     <th>Latest Commit at</th>
     <th>Latest Commit by</th>
@@ -17,10 +18,11 @@
 	</tr>
       </thead>
       <tbody>
-	{% for repo_name, last_update, latest_commit_hash, latest_commit_date, latest_commit_author, latest_commit_msg in repo_info %}
+	{% for repo_name, last_update, total_commits, latest_commit_hash, latest_commit_date, latest_commit_author, latest_commit_msg in repo_info %}
 	<tr>
 	  <td>{{ repo_name }}</td>
 	  <td>{{ last_update }}</td>
+    <td>{{ total_commits }}</td>
     <td>{{ latest_commit_hash }}</td>
     <td>{{ latest_commit_date }}</td>
     <td>{{ latest_commit_author }}</td>
