@@ -71,7 +71,7 @@ def git_submit():
                 commit_msg = commit["commit"]["message"]
                 if input_keyword in commit_msg:
                     commits_with_keyword.append((commit_hash, commit_date,
-                                             commit_author, commit_msg))
+                                                 commit_author, commit_msg))
         else:
             commit_hash = "Error fetching commits"
             commit_date = "N/A"
@@ -79,7 +79,7 @@ def git_submit():
             commit_msg = "N/A"
         return render_template("newpage.html", username=input_username,
                                repo_info=repo_info,
-                               commits_with_keyword = commits_with_keyword)
+                               commits_with_keyword=commits_with_keyword)
     else:
         return "User not exist"
 
