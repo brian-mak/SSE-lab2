@@ -49,7 +49,7 @@ def submit_git_repo():
                                repo_info=repo_info)
     else:
         error_message = "Error retrieving information. Please check input."
-        return error_message
+        return render_template("error.html", error_message=error_message)
 
 
 @app.route("/submit_search_keyword", methods=["POST"])
@@ -76,7 +76,7 @@ def submit_search_keyword():
     else:
         commits_with_keyword = []
         error_message = "Error retrieving information. Please check input."
-        return error_message
+        return render_template("error.html", error_message=error_message)
 
 
 def process_query(query):
