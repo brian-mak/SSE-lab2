@@ -1,37 +1,30 @@
 <html>
+  <center>
   <head>
   </head>
   <body>
-    <h1 style="color:#fc0fc0;">Hello World</h1>
-    <img src="static/meme.jpeg" alt="meme">
-    <h1 style="font-size:75%;">Source: <a href="https://www.bbc.co.uk/news/world-us-canada-37493165">BBC</a> </h1>
-    <h1 style="font-size:75%;">Time Now: </h1>
-    <iframe src="https://free.timeanddate.com/clock/i92wk9kz/n136"
-	    frameborder="0" width="113" height="18"></iframe>
-    <form action="/submit" method="post">
-      <label for="namefield" style="font-size:50%;">Name:</label>
-      <input type="text" id="namefield" name="name">
-      <label for="agefield" style="font-size:50%;">Age:</label>
-      <input type="number" id="agefield" name="age">
-      <label for="studentidfield" style="font-size:50%;">Student
-	ID:</label>
-      <input type="text" id="studentidfield" name="studentid">
-      <input type="submit" value="Submit">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/GitHub_Invertocat_Logo.svg"
+	 width="150" height="150" alt="GitHub Logo">
+    <h1>Welcome!</h1>
+    <p>This website allows you to retrieve information on your GitHub repositories.</p>
+    <p>Disclaimer: This website is not part of GitHub, and neither is
+    it endorsed by GitHub.</p>
+    <h2>Retrieve Information On Your GitHub Repositories</h2>
+    <form action="/submit_git_repo" method="post">
+      <p><label for="namefield">GitHub Username:</label>
+	<input type="text" id="namefield" name="git_username"></p>
+      <p><input type="submit" value="Submit"></p>
     </form>
-    <div id="countdown" style="font-size:75%;"></div>
-    <h1>Get Git Repository:</h1>
-    <form action="/git_submit" method="post">
-      <label for="namefield" style="font-size:50%;">GitHub
-	username:</label>
-      <input type="text" id="namefield" name="git_username">
-      <h2>Search for Keyword in Git Repository:</h2>
-      <label for="reponamefield" style="font-size:50%;">GitHub
-	Repository Name:</label>
-      <input type="text" id="reponamefield" name="repo_name">
-      <label for="keywordfield"
-	     style="font-size:50%;">Keyword:</label>
-      <input type="text" id="keywordfield" name="keyword">
-      <input type="submit" value="Submit">
-    </form>
+      <h2>Search for Commit Messages Containing Keyword in a Repository</h2>
+      <form action="/submit_search_keyword" method="post">
+	<p><label for="namefield">GitHub Username:</label>
+	  <input type="text" id="namefield" name="git_username" required></p>
+	<p><label for="reponamefield">Repository Name:</label>
+	  <input type="text" id="reponamefield" name="repo_name" required></p>
+	<p><label for="keywordfield">Keyword:</label>
+	  <input type="text" id="keywordfield" name="keyword" required></p>
+	<p><input type="submit" value="Submit"></p>
+      </form>
   </body>
+  </center>
 </html>

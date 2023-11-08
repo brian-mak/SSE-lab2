@@ -5,23 +5,12 @@ app = Flask(__name__)
 
 
 @app.route("/")
-def hello_world():
+def welcome():
     return render_template("index.html")
 
-
-@app.route("/submit", methods=["POST"])
-def submit():
-    input_name = request.form.get("name")
-    input_age = request.form.get("age")
-    input_studentid = request.form.get("studentid")
-    output_age = int(input_age) + 25
-    return render_template("hello.html", name=input_name,
-                           age=input_age, another_age=output_age,
-                           student_id=input_studentid)
-
-
-@app.route("/git_submit", methods=["POST"])
-def git_submit():
+    
+@app.route("/submit_git_repo", methods=["POST"])
+def submit_git_repo():
     input_username = request.form.get("git_username")
     input_repo_name = request.form.get("repo_name")
     input_keyword = request.form.get("keyword")
@@ -39,7 +28,7 @@ def git_submit():
                 commits = commit_response.json()
                 if len(commits) > 0:
                     total_commits = len(commits)
-                    latest_commit_hash = commits[0]["commit"]["tree"]["sha"]
+                    latest_commit_hash = commits[0]["sha"]
                     latest_commit_date = commits[0]["commit"]["author"]["date"]
                     latest_commit_author = \
                         commits[0]["commit"]["author"]["name"]
@@ -55,35 +44,40 @@ def git_submit():
                 latest_commit_date = "N/A"
                 latest_commit_author = "N/A"
                 latest_commit_msg = "N/A"
-
             repo_info.append((repo_name, last_updated, total_commits,
                               latest_commit_hash, latest_commit_date,
                               latest_commit_author, latest_commit_msg))
-        commit_response_2 = requests.get("https://api.github.com/repos/" +
-                                         input_repo_name + "/commits")
-        if commit_response_2.status_code == 200:
-            commits_of_interest = commit_response_2.json()
-            commits_with_keyword = []
-            for commit in commits_of_interest:
-                commit_hash = commit["sha"]
-                commit_date = commit["commit"]["author"]["date"]
-                commit_author = commit["commit"]["author"]["name"]
-                commit_msg = commit["commit"]["message"]
-                if input_keyword in commit_msg:
-                    commits_with_keyword.append((commit_hash, commit_date,
-                                                 commit_author, commit_msg))
-        else:
-            commit_hash = "Error fetching commits"
-            commit_date = "N/A"
-            commit_author = "N/A"
-            commit_msg = "N/A"
-        return render_template("newpage.html", username=input_username,
-                               repo_info=repo_info,
+        return render_template("repos.html", username=input_username,
+                               repo_info=repo_info)
+
+
+@app.route("/submit_search_keyword", methods=["POST"])
+def submit_search_keyword():
+    input_username = request.form.get("git_username")
+    input_repo_name = request.form.get("repo_name")
+    input_keyword = request.form.get("keyword")
+    repo_full_name = input_username + "/" + input_repo_name
+    commit_response_2 = requests.get("https://api.github.com/repos/" +
+                                     repo_full_name + "/commits")
+    if commit_response_2.status_code == 200:
+        commits_of_interest = commit_response_2.json()
+        commits_with_keyword = []
+        for commit in commits_of_interest:
+            commit_hash = commit["sha"]
+            commit_date = commit["commit"]["author"]["date"]
+            commit_author = commit["commit"]["author"]["name"]
+            commit_msg = commit["commit"]["message"]
+            if input_keyword in commit_msg:
+                commits_with_keyword.append((commit_hash, commit_date,
+                                             commit_author, commit_msg))
+        return render_template("search_keyword.html", username=input_username,
                                commits_with_keyword=commits_with_keyword)
     else:
-        return "User not exist"
+        commits_with_keyword = []
+        error_message = "Error retrieving information. Please check input."
+        return error_message
 
-
+    
 def process_query(query):
     if ("dinosaurs" in query):
         return "Dinosaurs ruled the Earth 200 million years ago"

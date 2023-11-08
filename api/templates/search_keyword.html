@@ -1,0 +1,32 @@
+<html>
+  <center>
+  <head>
+    <title>Github Repositories</title>
+  </head>
+  <body>
+    <h1>Hello {{ username }}!</h1>
+    <h2>Commits in GitHub Respository {{ repo_name }} Containing
+      Keyword {{ keyword }}</h2>
+    <table border="1">
+      <thead>
+	<tr>
+	  <th>Commit Hash</th>
+	  <th>Commit Date and Time</th>
+	  <th>Author</th>
+	  <th>Commit's Message</th>
+	</tr>
+      </thead>
+      <tbody>
+	{% for commit_hash, commit_date, commit_author, commit_msg in commits_with_keyword %}
+	<tr>
+	  <td>{{ commit_hash }}</td>
+	  <td>{{ commit_date }}</td>
+	  <td>{{ commit_author }}</td>
+	  <td>{{ commit_msg }}</td>
+	</tr>
+	{% endfor %}
+      </tbody>
+    </table>
+  </body>
+  </center>
+</html>
