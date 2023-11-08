@@ -8,12 +8,10 @@ app = Flask(__name__)
 def welcome():
     return render_template("index.html")
 
-    
+
 @app.route("/submit_git_repo", methods=["POST"])
 def submit_git_repo():
     input_username = request.form.get("git_username")
-    input_repo_name = request.form.get("repo_name")
-    input_keyword = request.form.get("keyword")
     response = requests.get("https://api.github.com/users/" +
                             input_username + "/repos")
     if response.status_code == 200:
@@ -77,7 +75,7 @@ def submit_search_keyword():
         error_message = "Error retrieving information. Please check input."
         return error_message
 
-    
+
 def process_query(query):
     if ("dinosaurs" in query):
         return "Dinosaurs ruled the Earth 200 million years ago"
