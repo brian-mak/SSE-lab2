@@ -47,6 +47,9 @@ def submit_git_repo():
                               latest_commit_author, latest_commit_msg))
         return render_template("repos.html", username=input_username,
                                repo_info=repo_info)
+    else:
+        error_message = "Error retrieving information. Please check input."
+        return error_message
 
 
 @app.route("/submit_search_keyword", methods=["POST"])
