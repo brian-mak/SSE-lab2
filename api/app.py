@@ -68,7 +68,7 @@ def submit_search_keyword():
             commit_date = commit["commit"]["author"]["date"]
             commit_author = commit["commit"]["author"]["name"]
             commit_msg = commit["commit"]["message"]
-            if input_keyword in commit_msg:
+            if input_keyword.lower() in commit_msg.lower():
                 commits_with_keyword.append((commit_hash, commit_date,
                                              commit_author, commit_msg))
         return render_template("search_keyword.html", username=input_username,
