@@ -72,7 +72,8 @@ def submit_search_keyword():
                 commits_with_keyword.append((commit_hash, commit_date,
                                              commit_author, commit_msg))
         return render_template("search_keyword.html", username=input_username,
-                               keyword=input_keyword, repo_name=input_repo_name,
+                               keyword=input_keyword,
+                               repo_name=input_repo_name,
                                commits_with_keyword=commits_with_keyword)
     else:
         commits_with_keyword = []
